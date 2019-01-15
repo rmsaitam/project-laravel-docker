@@ -1,5 +1,8 @@
 # project-laravel-docker
 **Projeto base Laravel com ambiente Docker**
+Webserver: Nginx
+PHP 7.2
+SGBD: MySQL 5.7
 
 **Premissas:** Ter o Git, Docker e Docker-composer instalados
 
