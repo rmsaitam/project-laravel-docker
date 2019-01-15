@@ -15,7 +15,7 @@ Acessar o diretório do repositório clonado
 
 PS: Por padrão nesse ambiente foi definido as credencias default que pode conferir no arquivo docker-compose.yml em environment do serviço db.
 
-Caso desejar alterar, é recomendo fazer antes do build as alteraçes de credencias default referente ao banco de dados, conforme comentado anteriormente.
+Caso desejar alterar, é recomendo fazer antes do build as alterações de credencias default referente ao banco de dados, conforme comentado anteriormente.
 
 Build do ambiente
 
