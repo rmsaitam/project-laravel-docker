@@ -1,0 +1,33 @@
+# Example configuration:
+upstream fastcgi_backend {
+    server   php:9000;
+}
+
+server {
+    listen       8080;
+    index index.php;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    root /var/www/html/public;
+    include       /etc/nginx/mime.types;
+   
+    location / {
+        try_files \$uri \$uri/ /index.php?\$query_string;
+        add_header Access-Control-Allow-Origin *;
+    }
+    
+    location ~* \.(eot|ttf|woff|css|js|gif|woff2|png)$ {
+        add_header Access-Control-Allow-Origin *;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass fastcgi_backend;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    } 
+
+}

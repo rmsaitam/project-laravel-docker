@@ -1,0 +1,46 @@
+version: '3'
+services:
+
+#PHP Service
+  php:
+    build: ./php7.2-fpm
+    container_name: php_laravel
+    depends_on:
+      - db
+    command: bash -c "php-fpm  && php-fpm -v"
+    volumes:
+      - ./src:/var/www/html:rw
+      - ./php7.2-fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
+    links:
+      - db
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: nginx_laravel
+    depends_on:
+      - php
+    volumes:
+      - ./src:/var/www/html
+      - ./php7.2-fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default:/etc/nginx/conf.d/default.conf
+  
+  #MySQL Service
+  db:
+    image: mysql:5.7
+    container_name: mysql_laravel
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user 
+    volumes:
+      - ./dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+  
