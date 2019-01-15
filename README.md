@@ -42,7 +42,7 @@ Primeiro deve adicionar as credencias do banco de dados no arquivo .env
 
 Nesse ambiente o diretório *src* é o volume mapeado com o diretório */var/www/html* do container PHP
 
-Então, o que for adicionado no diretório src do Host, será adicionado simultaneamente no diretório /var/www/html
+Então, o que for adicionado no diretório src do Host, será adicionado simultaneamente no diretório */var/www/html*
 
 Renomar o .env.example para .env e adicionar as credencias do banco de dados.
 
