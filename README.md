@@ -28,7 +28,7 @@ Instalar o framework Laravel no container PHP
 
 Setar permissão no diretório storage
 
-`docker exec -it php_laravel chown -R www-data:www-data storage/`
+`docker exec -it php_laravel chown -R www-data:www-data storage`
 
 Gerar Key do projeto
 
