@@ -5,6 +5,7 @@ upstream fastcgi_backend {
 
 server {
     listen       8080;
+    server_name projeto.docker
     index index.php;
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;

@@ -39,8 +39,23 @@ services:
       - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_DATABASE=laravel
       - MYSQL_USER=user
-      - MYSQL_PASSWORD=user 
+      - MYSQL_PASSWORD=secret 
     volumes:
       - ./dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
-  
+   
+  #PHPMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "80:80"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    depends_on:
+      - php 
+      - db 
+    links:
+      - db
