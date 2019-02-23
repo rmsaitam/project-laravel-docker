@@ -1,7 +1,7 @@
 # project-laravel-docker
 **Projeto base Laravel com ambiente Docker**
 
-Webserver: Nginx, PHP 7.2, SGBD: MySQL 5.7
+Webserver: Nginx, PHP 7.2, SGBD: MySQL 5.7, phpmyadmin
 
 **Premissas:** Ter o Git, Docker e Docker-composer instalados
 
@@ -42,6 +42,16 @@ Com isso, a princípio ao acessar no browser http://localhost:8080 deve acessar 
 
 Primeiro deve adicionar as credencias do banco de dados no arquivo .env
 
+Exemplo
+
+```
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=user
+DB_PASSWORD=secret
+```
+
 Nesse ambiente o diretório *src* é o volume mapeado com o diretório */var/www/html* do container PHP
 
 Então, o que for adicionado no diretório *src* do Host, será adicionado simultaneamente no diretório */var/www/html*
@@ -66,5 +76,15 @@ Irá criar no diretório *src/database/migrations* do Host e simultaneamente no 
 docker exec -it php_laravel php artisan migrate
 docker exec -it php_laravel php artisan db:seeds
 ```
+
+**Adicionar o nome do vhost no arquivo host**
+
+O nome do vhost foi definido como projeto.docker, mas caso desejar, pode alterar no arquivo default do container nginx em server_name, depois adicionar o mesmo nome definido no arquivo */etc/hosts* do HOST.
+
+```
+127.0.0.1 projeto.docker
+```
+
+No browser http://projeto.docker:8080 para o projeto Laravel e http://projeto.docker para o phpmyadmin.
 
 Feito!
