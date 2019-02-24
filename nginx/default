@@ -16,7 +16,7 @@ server {
     client_body_buffer_size 32K;
     client_max_body_size 300M;
     sendfile on;
-    send_timeout 300s
+    send_timeout 300s;
    
     location / {
         try_files \$uri \$uri/ /index.php?\$query_string;
