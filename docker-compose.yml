@@ -3,14 +3,14 @@ services:
 
 #PHP Service
   php:
-    build: ./php7.2-fpm
+    build: ./php-fpm
     container_name: php_laravel
     depends_on:
       - db
     command: bash -c "php-fpm  && php-fpm -v"
     volumes:
       - ./src:/var/www/html:rw
-      - ./php7.2-fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./php-fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
     links:
       - db
 
@@ -22,7 +22,7 @@ services:
       - php
     volumes:
       - ./src:/var/www/html
-      - ./php7.2-fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./php-fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
     ports:
       - "8080:8080"
     volumes:
